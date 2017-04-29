@@ -60,11 +60,22 @@ _
 BILDER_NAME=mkapolloall
 findProjectDir
 # Where to find configuration info
+export BILDER_CODIR=$PROJECT_DIR/bilder
 export BILDER_CONFDIR=$PROJECT_DIR/bilderconf
 # Name of package that determines whether to wait before building
 WAIT_PACKAGE=apollo
 # Set the installation umask
 umask 007
+
+if [ ! -d "$BILDER_CODIR" ]; then
+  # Control will enter here if $BILDER_CODIR doesn't exist.
+  svn co https://github.com/ApolloFramework/bilder.git/trunk $BILDER_CODIR
+fi
+
+if [ -d "$BILDER_CODIR" ]; then
+  # Control will enter here if $DIRECTORY exists.
+  svn up $BILDER_CODIR
+fi
 
 #
 # Get all bilder methods and variables
