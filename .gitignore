@@ -1,0 +1,8 @@
+bilder/
+builds/
+numpkgs/
+firstrunsubj.txt
+lastbuildpkgs.txt
+mkapolloall-redo.sh
+statedbuilds*
+stateddeps*

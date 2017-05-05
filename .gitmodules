@@ -1,9 +1,9 @@
-[submodule "bilder"]
-	path = bilder
-	url = https://github.com/ApolloFramework/bilder
 [submodule "Trilinos"]
 	path = trilinos
 	url = https://github.com/ApolloFramework/Trilinos
 [submodule "Camellia"]
 	path = camellia
 	url = https://github.com/ApolloFramework/Camellia.git
+[submodule "scimake"]
+	path = scimake
+	url = https://github.com/ApolloFramework/scimake.git
