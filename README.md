@@ -5,4 +5,4 @@ We use git submodules to manage the dependencies. A guide for how to use submodu
 
 In principle, you should be able to build the framework with the following command on Mac OSX:
 
-./mkapolloall.sh -a -j <# of cores> -b <PATH_TO_BUILD_LOCATION> -k <PATH_TO_INSTALL_LOCATION> -i <<ATH_TO_INSTALL_LOCATION> -m darwin.clangcxx11 -C -I -F -y -o -E USE_MPI=mpich -E SUPERLU_DIST5_BUILDS=par camellia
+./mkapolloall.sh -a -j <# of cores> -b <PATH_TO_BUILD_LOCATION> -k <PATH_TO_INSTALL_LOCATION> -i <PATH_TO_INSTALL_LOCATION> -m darwin.clangcxx11 -C -I -F -y -o -E USE_MPI=mpich -E SUPERLU_DIST5_BUILDS=par camellia
