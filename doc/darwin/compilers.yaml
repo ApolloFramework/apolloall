@@ -1,0 +1,66 @@
+compilers:
+- compiler:
+    environment: {}
+    extra_rpaths: []
+    flags: {}
+    modules: []
+    operating_system: sierra
+    paths:
+      cc: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+      cxx: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
+      f77: /opt/homebrew/bin/gfortran-7
+      fc: /opt/homebrew/bin/gfortran-7
+    spec: clang@9.0.0-apple
+    target: x86_64
+- compiler:
+    environment: {}
+    extra_rpaths: []
+    flags: {}
+    modules: []
+    operating_system: sierra
+    paths:
+      cc: /opt/homebrew/bin/gcc-7
+      cxx: /opt/homebrew/bin/g++-7
+      f77: /opt/homebrew/bin/gfortran-7
+      fc: /opt/homebrew/bin/gfortran-7
+    spec: gcc@7.2.0
+    target: x86_64
+- compiler:
+    environment: {}
+    extra_rpaths: []
+    flags: {}
+    modules: []
+    operating_system: sierra
+    paths:
+      cc: /opt/homebrew/bin/gcc-4.9
+      cxx: /opt/homebrew/bin/g++-4.9
+      f77: /opt/homebrew/bin/gfortran-4.9
+      fc: /opt/homebrew/bin/gfortran-4.9
+    spec: gcc@4.9.4
+    target: x86_64
+- compiler:
+    environment: {}
+    extra_rpaths: []
+    flags: {}
+    modules: []
+    operating_system: sierra
+    paths:
+      cc: /usr/bin/gcc
+      cxx: /usr/bin/g++
+      f77: null
+      fc: null
+    spec: gcc@4.2.1
+    target: x86_64
+- compiler:
+    environment: {}
+    extra_rpaths: []
+    flags: {}
+    modules: []
+    operating_system: sierra
+    paths:
+      cc: /opt/homebrew/bin/gcc-5
+      cxx: /opt/homebrew/bin/g++-5
+      f77: /opt/homebrew/bin/gfortran-5
+      fc: /opt/homebrew/bin/gfortran-5
+    spec: gcc@5.4.0
+    target: x86_64

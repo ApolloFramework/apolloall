@@ -1,8 +1,7 @@
-bilder/
 builds/
-numpkgs/
-firstrunsubj.txt
-lastbuildpkgs.txt
-mkapolloall-redo.sh
-statedbuilds*
-stateddeps*
+.*.swp
+camellia2
+camellia
+spack
+theaceae
+temp
