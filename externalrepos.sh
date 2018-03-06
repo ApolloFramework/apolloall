@@ -21,7 +21,8 @@ EXTERNALREPO USAGE
   -t ................ Get theaceae
   -T ................ Get Trilinos
   -s ................ Get spack
-  -S ................ Show all of the repos including those not covered
+  -S ................ Get scimake
+  -L ................ List all of the repos including those not covered
  
 EOF
 }
@@ -34,15 +35,17 @@ processExtreposArgs() {
     c) GET_CAMELLIA=true;;
     C) GET_CAMELLIA2=true;;
     s) GET_SPACK=true;;
+    S) GET_SCIMAKE=true;;
     t) GET_THEACEAE=true;;
     T) GET_TRILINOS=true;;
     a) GET_CAMELLIA=true
        GET_CAMELLIA2=true
        GET_SPACK=true
+       GET_SCIMAKE=true
        GET_THEACEAE=true
        GET_TRILINOS=true
        ;;
-    S) SHOWALL=true;;
+    L) LISTALL=true;;
     h) extReposUsage 0; exit 0;;
    \?) extReposUsage 1; exit 0;;
     *)  # To take care of any extra args
@@ -58,10 +61,11 @@ processExtreposArgs() {
 GET_CAMELLIA=false
 GET_CAMELLIA2=false
 GET_SPACK=false
+GET_SCIMAKE=false
 GET_THEACEAE=false
 GET_TRILINOS=false
-SHOWALL=false
-EXTREPOS_ARGS="acChsStT"
+LISTALL=false
+EXTREPOS_ARGS="acChLsStT"
 while getopts "$EXTREPOS_ARGS" arg; do
   processExtreposArgs $arg
 done
@@ -143,6 +147,9 @@ if $GET_SPACK; then
   cloneGitRepo $apollo spack spack
   addExtraUpstream $github "spack/spack" "spack" "upstream" ""
 fi
+if $GET_SCIMAKE; then
+  cloneGitRepo $apollo scimake scimake
+fi
 # This is the repo for the test cases
 if $GET_TRILINOS; then
   cloneGitRepo $apollo "Trilinos" "trilinos"
@@ -155,7 +162,7 @@ fi
 
 
 
-if $SHOWALL; then
+if $LISTALL; then
   cat >&2 <<SHEOF
 
 CAMELLIA (-c option):
