@@ -45,5 +45,38 @@ The main actions of this sourcing is:
 Further preparations for using spack
 -----------------------------------------
 
+Install a simple package with spack just to get going::
 
+      spack install libelf
+
+To tell spack to get the package information for apollo::
+
+      cp $APOLLO_ROOT/share/repos.yaml ~/.spack
+
+More information on spack itself can be here:
+   http://spack.readthedocs.io/en/latest/getting_started.html
+
+
+
+My spack notes
+-----------------------------------------
+
+I personally put my builds and caches into a
+"SCRATCH" directory so that I can avoid backing
+them up for my laptop.  So I have these lines in my 
+``$HOME/.spack/config.yaml``::
+
+  build_stage:
+    - /scr_gabrielle/kruger/spacksoftware/var/spack/stage
+
+  source_cache: /scr_gabrielle/kruger/spacksoftware/var/spack/cache
+
+
+For the builds, spack will link recent builds in 
+``$spack/var/spack/stage`` to this cache.  I like having
+a shortcut to access these build directories::
+
+  ln -sf spack/var/spack/stage builds
+
+Spack 
 

@@ -19,7 +19,7 @@ EXTERNALREPO USAGE
   -c ................ Get camellia
   -C ................ Get camellia2
   -t ................ Get theaceae
-  -T ................ Get Trilinos
+  -T ................ Get Trilinos (optional since default is to use spack provided)
   -s ................ Get spack
   -S ................ Get scimake
   -L ................ List all of the repos including those not covered
@@ -43,7 +43,6 @@ processExtreposArgs() {
        GET_SPACK=true
        GET_SCIMAKE=true
        GET_THEACEAE=true
-       GET_TRILINOS=true
        ;;
     L) LISTALL=true;;
     h) extReposUsage 0; exit 0;;
@@ -143,9 +142,11 @@ if $GET_CAMELLIA2; then
   addExtraUpstream $bitbucket nateroberts/camellia camellia2 upstream ""
 fi
 # This is the repo for our preferred build system
+# We do not do much development of spack itself, so default is github
+# and apollo is added as another remote with the name of apollo
 if $GET_SPACK; then
-  cloneGitRepo $apollo spack spack
-  addExtraUpstream $github "spack/spack" "spack" "upstream" ""
+  cloneGitRepo $github spack spack
+  addExtraUpstream $apollo "spack/spack" "spack" "apollo" ""
 fi
 if $GET_SCIMAKE; then
   cloneGitRepo $apollo scimake scimake
@@ -179,7 +180,7 @@ SPACK (-s option):
  git clone https://${apollo}/spack spack
  git remote add upstream https://${github}/spack/spack
 
-TRILINOS (-T option):
+TRILINOS (-T option):  (Not downloaded with -a)
  git clone https://${apollo}/Trilinos trilinos
  git remote add upstream https://${github}/trilinos/Trilinos
 

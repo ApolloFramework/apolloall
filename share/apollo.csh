@@ -15,7 +15,7 @@ set aroot=`dirname ${full_script_dir}`
 setenv APOLLO_ROOT $aroot
 setenv SPACK_ROOT  $APOLLO_ROOT/spack
 setenv PATH $SPACK_ROOT/bin:${PATH}
-source $SPACK_ROOT/share/spack/setup-env.csh
+alias spackinit='source $SPACK_ROOT/share/spack/setup-env.csh'
 
 # See this:
 # https://unix.stackexchange.com/questions/4650/determining-path-to-sourced-shell-script
