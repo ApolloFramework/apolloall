@@ -51,12 +51,60 @@ Install a simple package with spack just to get going::
 
 To tell spack to get the package information for apollo::
 
-      cp $APOLLO_ROOT/share/repos.yaml ~/.spack
+      cat $APOLLO_ROOT/share/repos.yaml >> ~/.spack/repos.yaml
+
 
 More information on spack itself can be here:
    http://spack.readthedocs.io/en/latest/getting_started.html
 
 
+Install packages we need::
+
+      spack install trilinos+intrepid+intrepid2+hdf5^zlib
+      spack install moab
+
+The more complicated trilinos install is to insure that moab and trilinos
+are built with the same dependency tree.
+
+Create views::
+
+      spack view --verbose symlink -i $SCRATCH/apolloview  trilinos 
+      spack view --verbose symlink $SCRATCH/apolloview  moab
+
+The  -i above is to ignore conflicts and there are conflicts between superlu and
+SuiteSparse.
+
+The above do not work very well if you have multiple installed.  So you need to
+need to use::
+
+      spack find -lv moab
+      spack find -lv trilinos
+      spack find -dlv moab
+      spack find -dlv trilinos
+
+To find the versions that work.  For me, I could then::
+
+      spack view --verbose symlink $SCRATCH/apolloview moab^/oajmavs
+
+Could also just do this::
+
+      spack find -p trilinos@12.12.1
+
+And then put it into the config script::
+
+        -DTrilinos_ROOT_DIR:PATH='/scr_gabrielle/kruger/spacksoftware/darwin-sierra-x86_64/clang-9.0.0-apple/trilinos-12.12.1-g4bhxtdbxr53qzzfuvgtpwhulkleaz73' \
+
+
+Actually it is best to put this into packages.yaml::
+
+      packages:
+        all:
+          providers:
+            mpi: [mpich, openmpi]
+        hdf5:
+          variants: +cxx+hl+zlib
+        trilinos:
+          variants: +intrepid+intrepid2+shards+hdf5+zlib
 
 My spack notes
 -----------------------------------------

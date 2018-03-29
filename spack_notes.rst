@@ -8,7 +8,8 @@ up or whether just changing my stage dirs do not work.
 
 bash/tcsh initialization is slow
 
-How to get petsc
+Need to figure out how to diff different variants.  Try writing a `specdiff`.
+
 
 
 Ideas
@@ -44,18 +45,26 @@ Things that change:
        + Make it easier to find the build directory
           - Get spack cd to work
        + Staging source code is not relevant.  
-       + --keep-stage is always true.  
+       + Modify install options:
+           > --keep-stage is always true.  
+           > --run-tests should be optionally true at a project level
 
-I want to put this into my ~/.spack/config::
 
-  # These are repositories that developers manage rather than spack
-  source_develop: 
-    - /Users/kruger/dgFramework/apolloall
+Steps:
 
-  # Where to place 
-  build_stage_develop:
-    - /scr_gabrielle/kruger/build-physics
+1. project.yaml in ~/.spack
+   Need to determine format and then read it in
 
-But it doesn't even give me a parse error.
+2. Try to determine how to override fetchers
+
+Spack-conda integration
+=======================
+
+Conda -- uses shorter names than hash so would prefer to do something like::
+
+    spack condaview trilinos
+
+and then have that appear into conda.  But need to figure out how to make
+conda know about it.
 
 
