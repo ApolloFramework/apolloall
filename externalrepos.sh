@@ -145,8 +145,8 @@ fi
 # We do not do much development of spack itself, so default is github
 # and apollo is added as another remote with the name of apollo
 if $GET_SPACK; then
-  cloneGitRepo $github spack spack
-  addExtraUpstream $apollo "spack/spack" "spack" "apollo" ""
+  cloneGitRepo $github "spack/spack" "spack"
+  addExtraUpstream $apollo "spack" "spack" "apollo" ""
 fi
 if $GET_SCIMAKE; then
   cloneGitRepo $apollo scimake scimake
