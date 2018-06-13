@@ -88,6 +88,13 @@ getRepoUser() {
         repouser=kruger   # github
      fi
      ;;
+  ehowell)
+     if test "${reponame}" == "${bitbucket}"; then
+        repouser=ehowell
+     else
+        repouser=echowell   # github
+     fi
+     ;;
   esac
   echo $repouser
   return 
