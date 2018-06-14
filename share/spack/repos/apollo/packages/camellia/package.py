@@ -1,8 +1,12 @@
 ##############################################################################
-# This file is part of the Apolloall Framework.
-# Created by Eric Howell, ehowell@txcorp.com, 
+# This file is part of the Apollo Framework.
+# This file is an adaptation of the spack package file for Camellia
+# that installs camellia from the apolloall repository instead of the
+# standard camellia bitbucket repo.
 #
-# This file is spack package file for camellia
+# Modified by Eric Howell, ehowell@txcorp.com, 
+#
+# This file is a spack package file for camellia
 #
 # To install camellia type the command
 #
@@ -12,10 +16,38 @@
 # the external libraries needed for camellia. It will then 
 # install camellia from soruce files in the $APOLLO_ROOT directory
 #
-# For details on space see https://github.com/spack/spack
+# For details on spack see https://github.com/spack/spack
 #
-# For details on camellia see 
+# For details on camellia see https://bitbucket.org/nateroberts/Camellia
+#
+# For details on the Apollo Framework see https://github.com/ApolloFramework/
 ##############################################################################
+
+########################LLNL Copyright infor for SPACK#########################
+# Copyright (c) 2013-2018, Lawrence Livermore National Security, LLC.
+# Produced at the Lawrence Livermore National Laboratory.
+#
+# This file is part of Spack.
+# Created by Todd Gamblin, tgamblin@llnl.gov, All rights reserved.
+# LLNL-CODE-647188
+#
+# For details, see https://github.com/spack/spack
+# Please also see the NOTICE and LICENSE files for our notice and the LGPL.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License (as
+# published by the Free Software Foundation) version 2.1, February 1999.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the IMPLIED WARRANTY OF
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the terms and
+# conditions of the GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+##############################################################################
+
 from spack import *
 
 class Camellia(CMakePackage):
@@ -27,7 +59,10 @@ class Camellia(CMakePackage):
     url      = "https://bitbucket.org/nateroberts/camellia.git"
 
     maintainers = ['CamelliaDPG']
-    version('master', git='https://bitbucket.org/nateroberts/camellia.git', branch='master')
+    version('apollo', git='https://github.com/ApolloFramework/Camellia.git', branch='master')
+    version('apollo2', git='https://github.com/ApolloFramework/Camellia2.git', branch='master-github')
+
+    version('nates_master', git='https://bitbucket.org/nateroberts/camellia.git', branch='master')
 
     variant('moab', default=True, description='Compile with MOAB to include support for reading standard mesh formats')
 
