@@ -12,9 +12,9 @@ actual project.  Currently these are:
   + `Trilinos`_ : https://${apollo}/Trilinos 
       - Mathematics library that provides much of the core infrastructure for
         Camellia
-  + `spack`_ : https://${apollo}/Camellia 
+  + `spack`_ : https://${apollo}/spack 
       - A meta-build system for easily building the dependency tree for the
         project within a single system
 
 
-The links given are the Apollo projects fork of the      
+The above links point to the Apollo project forks of the respective git repositories.
