@@ -7,3 +7,5 @@ theaceae
 temp
 scimake
 trilinos
+*.pyc
+*~
