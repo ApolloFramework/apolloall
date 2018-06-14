@@ -25,7 +25,63 @@ The above links point to the Apollo project forks of the respective git reposito
 Installation
 ==========
 
-To check out the repostory from the command line:
+To check out the repository from the command line::
 
-  + git clone https://github.com/ApolloFramework/apolloall apolloall
+      git clone https://github.com/ApolloFramework/apolloall apolloall
 
+
+To get all of the repositories we need, type from within the apolloall 
+directory::
+
+      ./externalrepos.sh -a
+
+The first time this is run, it will do a `git clone`, and upon successive
+invocations it will perform a `git update`.  
+
+Options are available to `clone or update` a single repository.  To see these
+options::
+
+      ./externalrepos.sh -h
+
+In addition to checking out the Apollo forks of these repositories,
+`externalrepos.sh` also adds remotes to the upstream repositories.  To see the
+essential actions taken, `externalrepos.sh` can `Show` it's actions::
+
+      ./externalrepos.sh -S
+
+Once the external repositories are checked out, then configuration can occur by
+sourcing the appropriate shell files::
+
+      source share/apollo.sh   # Bash users
+      source share/apollo.csh  # tcsh users
+
+To tell spack to get the package information for apollo::
+
+      cat $APOLLO_ROOT/share/repos.yaml >> ~/.spack/repos.yaml
+
+To install Camellia and all it's dependencies::
+
+      spack install camellia
+
+The spack package has instructions to install several versions of Camellia. 
+The command::
+
+      spack install camellia@apollo
+
+Downloads and installs the master branch of camellia in the `apolloall` repository. It is equivalent to the command::
+
+      spack install camellia
+
+Alternatively the apolloall `camellia2` can be installed using the command::
+
+      spack install camellia@apollo2
+
+Finally the master branch of camellia can be installed using the command::
+
+      spack install camellia@nates_master
+
+Todo::
+  + Fix package.py for apollo branches of camellia
+  + I need a better name for the master branch of camellia
+  + Create a package installer for theaceae
+  + Instructions on how to use spack diy to install a local version of Camellia
