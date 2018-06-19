@@ -76,12 +76,20 @@ Alternatively the apolloall `camellia2` can be installed using the command::
 
       spack install camellia@apollo2
 
-Finally the master branch of camellia can be installed using the command::
+The master branch of camellia can be installed using the command::
 
       spack install camellia@nates_master
+
+If you want to install you own local version of camellia using the diy command::
+
+      spack diy camellia@<version> -d path/to/camellia
+
+Or you can navigate to the Camellia root directory and run::
+
+      spack diy camellia@<version>
 
 Todo::
   + Fix package.py for apollo branches of camellia
   + I need a better name for the master branch of camellia
   + Create a package installer for theaceae
-  + Instructions on how to use spack diy to install a local version of Camellia
+  + Spack diy doesn't work that well debug

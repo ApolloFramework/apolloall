@@ -68,22 +68,35 @@ class Camellia(CMakePackage):
 
     depends_on('trilinos+amesos+amesos2+belos+epetra+epetraext+exodus+ifpack+ifpack2+intrepid+intrepid2+kokkos+ml+muelu+sacado+shards+teuchos+tpetra+zoltan+mumps+superlu-dist+hdf5+zlib+pnetcdf@master,12.12.1:')
     depends_on('moab@:4', when='+moab')
-    depends_on('hdf5@:1.10.2')
+#later version of hdf5 compile but fail at run time
+#bug related to H5Dcreate2():
+#1.8.10 fails to compile
+    depends_on('hdf5@:1.8.12')
     depends_on('mpi')
 
     def cmake_args(self):
         spec = self.spec
         options = [
             '-DTrilinos_PATH:PATH=%s' % spec['trilinos'].prefix,
+            '-DTrilinos_ROOT_DIR:PATH=%s' % spec['trilinos'].prefix,
             '-DMPI_DIR:PATH=%s' % spec['mpi'].prefix,
-            '-DBUILD_FOR_INSTALL:BOOL=ON'
+            '-DBUILD_FOR_INSTALL:BOOL=ON',
+            '-DENABLE_PARALLEL:BOOL=ON'
         ]
 
         if '+moab' in spec:
-            options.extend([
-                '-DENABLE_MOAB:BOOL=ON',
-                '-DMOAB_PATH:PATH=%s' % spec['moab'].prefix
-            ])
+#            if self.verison() =='apollo':
+            if True :
+              options.extend([
+                  '-DENABLE_MOAB:BOOL=ON',
+                  '-DMoab_ROOT_DIR:PATH=%s' % spec['moab'].prefix,
+                  '-DMOAB_PATH:PATH=%s' % spec['moab'].prefix
+              ])
+            else:
+              options.extend([
+                  '-DENABLE_MOAB:BOOL=ON',
+                  '-DMOAB_PATH:PATH=%s' % spec['moab'].prefix
+              ])
         else:
             options.append('-DENABLE_MOAB:BOOL=OFF')
 
