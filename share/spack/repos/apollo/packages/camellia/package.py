@@ -66,7 +66,8 @@ class Camellia(CMakePackage):
 
     variant('moab', default=True, description='Compile with MOAB to include support for reading standard mesh formats')
 
-    depends_on('trilinos+amesos+amesos2+belos+epetra+epetraext+exodus+ifpack+ifpack2+intrepid+intrepid2+kokkos+ml+muelu+sacado+shards+teuchos+tpetra+zoltan+mumps+superlu-dist+hdf5+zlib+pnetcdf@master,12.12.1:')
+    #depends_on('trilinos+amesos+amesos2+belos+epetra+epetraext+exodus+ifpack+ifpack2+intrepid+intrepid2+kokkos+ml+muelu+sacado+shards+teuchos+tpetra+zoltan+mumps+superlu-dist+hdf5+zlib+pnetcdf@master,12.12.1:')
+    depends_on('trilinos+amesos2+belos+epetra+epetraext+exodus+ifpack+ifpack2+intrepid+intrepid2+kokkos+ml+muelu+sacado+shards+teuchos+tpetra+zoltan+mumps+superlu-dist+hdf5+zlib+pnetcdf@master,12.12.1:')
     depends_on('moab@:4', when='+moab')
 #later version of hdf5 compile but fail at run time
 #bug related to H5Dcreate2():
@@ -81,7 +82,10 @@ class Camellia(CMakePackage):
             '-DTrilinos_ROOT_DIR:PATH=%s' % spec['trilinos'].prefix,
             '-DMPI_DIR:PATH=%s' % spec['mpi'].prefix,
             '-DBUILD_FOR_INSTALL:BOOL=ON',
-            '-DENABLE_PARALLEL:BOOL=ON'
+            '-DENABLE_PARALLEL:BOOL=ON',
+            '-DCMAKE_C_COMPILER=%s' % spec['mpi'].mpicc,
+            '-DCMAKE_CXX_COMPILER=%s' % spec['mpi'].mpicxx,
+            '-DCMAKE_Fortran_COMPILER=%s' % spec['mpi'].mpifc
         ]
 
         if '+moab' in spec:
