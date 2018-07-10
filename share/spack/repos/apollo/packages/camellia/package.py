@@ -81,14 +81,20 @@ class Camellia(CMakePackage):
         options = [
             '-DTrilinos_PATH:PATH=%s' % spec['trilinos'].prefix,
             '-DTrilinos_ROOT_DIR:PATH=%s' % spec['trilinos'].prefix,
-            '-DMPI_DIR:PATH=%s' % spec['mpi'].prefix,
             '-DBUILD_FOR_INSTALL:BOOL=ON',
-            '-DENABLE_PARALLEL:BOOL=ON',
-            '-DCMAKE_C_COMPILER=%s' % spec['mpi'].mpicc,
-            '-DCMAKE_CXX_COMPILER=%s' % spec['mpi'].mpicxx,
-            '-DCMAKE_Fortran_COMPILER=%s' % spec['mpi'].mpifc
+            '-DCMAKE_C_COMPILER:FILEPATH=%s' % spec['mpi'].mpicc,
+            '-DCMAKE_CXX_COMPILER:FILEPATH=%s' % spec['mpi'].mpicxx,
+            '-DCMAKE_Fortran_COMPILER:FILEPATH=%s' % spec['mpi'].mpifc
         ]
 
+        if '@apollo' in spec:
+           options.extend([
+               '-DENABLE_PARALLEL:BOOL=ON',
+           ])
+        else:
+           options.extend([
+               '-DMPI_DIR:PATH=%s' % spec['mpi'].prefix,
+           ])
         if '+moab' in spec:
             if '@apollo' in spec:
               options.extend([
