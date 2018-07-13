@@ -23,7 +23,7 @@ The above links point to the Apollo project forks of the respective git reposito
 
 
 Installation
-==========
+============
 
 To check out the repository from the command line::
 

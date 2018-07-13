@@ -128,3 +128,7 @@ a shortcut to access these build directories::
 
 Spack 
 
+
+On mac
+brew install gmsh --with-fltk
+
