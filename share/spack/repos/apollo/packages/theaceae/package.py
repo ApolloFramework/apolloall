@@ -61,7 +61,7 @@ class Theaceae(CMakePackage):
     def cmake_args(self):
         spec = self.spec
         options = [
-            '-DCamellia_ROOT_DIR:PATH=%s' % spec['camella'].prefix,
+            '-DCamellia_ROOT_DIR:PATH=%s' % spec['camellia'].prefix,
             '-DENABLE_DOCS:BOOL=ON',
             '-DCMAKE_C_COMPILER:FILEPATH=%s' % spec['mpi'].mpicc,
             '-DCMAKE_CXX_COMPILER:FILEPATH=%s' % spec['mpi'].mpicxx,
