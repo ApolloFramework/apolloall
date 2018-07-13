@@ -40,20 +40,29 @@
 from spack import *
 
 
-class Theaceae(Package):
-    """FIXME: Put a proper description of your package here."""
+class Theaceae(CMakePackage):
+    """Theaceae: A collection of benchmarks for testing 
+       DPG and other hybrid methods.  Associated with Camellia.
+    """
 
-    # FIXME: Add a proper url for your package's homepage here.
-    homepage = "http://www.example.com"
-    url      = "http://www.example.com/example-1.2.3.tar.gz"
+    homepage = "https://github.com/ApolloFramework/theaceae.git"
+    url      = "https://github.com/ApolloFramework/theaceae.git"
+    version('apollo', git='https://github.com/ApolloFramework/theaceae.git', branch='master')
 
     # FIXME: Add proper versions and checksums here.
     # version('1.2.3', '0123456789abcdef0123456789abcdef')
 
-    # FIXME: Add dependencies if required.
-    # depends_on('foo')
+    # Need Camellia to build executables and sphinx to build docs
+    # which we build all the time currently (could make variation)
+    depends_on('camellia@apollo2')
+    depends_on('py-sphinx')
 
-    def install(self, spec, prefix):
-        # FIXME: Unknown build system
-        make()
-        make('install')
+    def cmake_args(self):
+        spec = self.spec
+        options = [
+            '-DCamellia_ROOT_DIR:PATH=%s' % spec['camella'].prefix,
+            '-DENABLE_DOCS:BOOL=ON',
+            '-DCMAKE_C_COMPILER:FILEPATH=%s' % spec['mpi'].mpicc,
+            '-DCMAKE_CXX_COMPILER:FILEPATH=%s' % spec['mpi'].mpicxx,
+            '-DCMAKE_Fortran_COMPILER:FILEPATH=%s' % spec['mpi'].mpifc
+        ]
