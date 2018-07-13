@@ -56,6 +56,7 @@ class Theaceae(CMakePackage):
     # which we build all the time currently (could make variation)
     depends_on('camellia@apollo2')
     depends_on('py-sphinx')
+    depends_on('py-sphinx-bootstrap-theme')
 
     def cmake_args(self):
         spec = self.spec
