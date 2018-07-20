@@ -15,7 +15,7 @@ EOF
   cat >&2 <<EOF
 EXTERNALREPO USAGE 
   -h ................ print help
-  -a ................ Get or update everything
+  -a ................ Get or update all important repos: theaceae, camellia2, spack, scimake
   -c ................ Get camellia
   -C ................ Get camellia2
   -t ................ Get theaceae
@@ -38,8 +38,7 @@ processExtreposArgs() {
     S) GET_SCIMAKE=true;;
     t) GET_THEACEAE=true;;
     T) GET_TRILINOS=true;;
-    a) GET_CAMELLIA=true
-       GET_CAMELLIA2=true
+    a) GET_CAMELLIA2=true
        GET_SPACK=true
        GET_SCIMAKE=true
        GET_THEACEAE=true
