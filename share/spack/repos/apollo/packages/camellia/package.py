@@ -65,11 +65,13 @@ class Camellia(CMakePackage):
     version('nates_master', git='https://bitbucket.org/nateroberts/camellia.git', branch='master')
 
     variant('moab', default=True, description='Compile with MOAB to include support for reading standard mesh formats')
+    variant('doc', default=False, description='Build doxygen documentation')
 
     #depends_on('trilinos+amesos+amesos2+belos+epetra+epetraext+exodus+ifpack+ifpack2+intrepid+intrepid2+kokkos+ml+muelu+sacado+shards+teuchos+tpetra+zoltan+mumps+superlu-dist+hdf5+zlib+pnetcdf@master,12.12.1:')
     depends_on('trilinos+amesos2+belos+epetra+epetraext+exodus+ifpack+ifpack2+intrepid+intrepid2+kokkos+ml+muelu+sacado+shards+teuchos+tpetra+zoltan+mumps+superlu-dist+hdf5+zlib+pnetcdf@master,12.12.1:')
     #depends_on('moab@:4', when='+moab')
     depends_on('moab')
+    depends_on('moab', when '+docs')
 #later version of hdf5 compile but fail at run time
 #bug related to H5Dcreate2():
 #1.8.10 fails to compile
@@ -109,5 +111,12 @@ class Camellia(CMakePackage):
               ])
         else:
             options.append('-DENABLE_MOAB:BOOL=OFF')
+
+        if '+doc' in spec:
+            options.append('-DENABLE_DOCS:BOOL=ON')
+            options.append('-DDOXYGEN_EXECUTABLE:FILEPATH=%s'
+                            % spec['doxygen'].command.path)
+        else:
+            options.append('-DENABLE_DOCS:BOOL=OFF')
 
         return options
