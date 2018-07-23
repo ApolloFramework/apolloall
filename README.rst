@@ -4,28 +4,29 @@ apolloall
 apolloall is a container for all of individual git repositories that make up the
 actual project.  Currently these are:
 
-  + `theaceae`_ : https://github.com/ApolloFramework/theaceae
+  + `theaceae <https://github.com/ApolloFramework/theaceae>`_ :
       - Main goal of the Apollo Framework: A set of test cases for evaluating
         discretization schemes across a wide range of physics cases
       - *Generally build/work from repository*
-  + `Camellia2`_ : https://github.com/ApolloFramework/Camellia2
+  + `Camellia2 <https://github.com/ApolloFramework/Camellia2>`_ :
       - A Petrov-Galerkin toolkit used to evaluate the different methods
       - *Generally build/work from repository*
-      - `Main site`_ : https://bitbucket.org/nateroberts/camellia
-  + `spack`_ : https://github.com/ApolloFramework/spack 
+      - `Main camellia site <https://bitbucket.org/nateroberts/camellia>`_ :
+  + `spack <https://github.com/ApolloFramework/spack>`_ 
       - A meta-build system for easily building the dependency tree for the
         project within a single system
       - *Generally build/work from repository with apollo branch*
-      - `Main site`_ : https://spack.io
-  + `Trilinos`_ : https://github.com/ApolloFramework/Trilinos 
+      - `Main spack site <https://spack.io>`_
+  + `Trilinos <https://github.com/ApolloFramework/Trilinos>`_ :
       - Mathematics library that provides much of the core infrastructure for
         Camellia
       - *Generally build/work from tarball*
-      - `Main site`_ : https://trilinos.org
-  + `Moab`_: 
+      - `Main trilinos site <https://trilinos.org>`_
+  + Moab: 
       - Meshing library that provides interface to mesh readers and tools
       - *Generally build/work from tarball*
-      - `Main site`_ : http://sigma.mcs.anl.gov/moab-library/
+      - `Main moab site <http://sigma.mcs.anl.gov/moab-library/>`_
+
 
 Installation of theaceae, Camellia, and dependencies
 ----------------------------------------------------
@@ -62,9 +63,29 @@ sourcing the appropriate shell files::
       source share/apollo.sh   # Bash users
       source share/apollo.csh  # tcsh users
 
+We use `spack` to manage the build dependency process.
 To tell spack to get the package information for apollo::
 
       cat $APOLLO_ROOT/share/repos.yaml >> ~/.spack/repos.yaml
+
+It is useful to have `spack` bootstrap itself especially for some of the python
+dependencies needed::
+
+      spack bootstrap
+
+To make sure the compilers are configured, this is a simple package to build and
+install::
+
+      spack install libelf
+
+If it doesn't work, then you may need to configure
+`$HOME/.spack/compilers.yaml`.  This shows the current compilers::
+
+      spack compilers
+
+This can help configure the `compilers.yaml` file for you::
+
+      spack compiler find
 
 To install Theacae along with Camellia and all it's dependencies::
 
@@ -96,10 +117,3 @@ switching to the normal edit/build development workflow cycle.
 
 Todo::
   + Spack diy doesn't work that well debug
-
-.. toctree::
-    :maxdepth: 1
-    :numbered:
-    :titlesonly:
-
-    doc/spack_notes.rst
