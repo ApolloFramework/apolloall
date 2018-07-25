@@ -8,7 +8,7 @@ script_name=config.sh
 
 
 
-# A Camellia do-config script that uses Spack-built dependencies
+# Generate a Camellia script for running cmake that uses Spack-built dependencies
 # To find the dependencies, basic procedure is to 
 #   1. Use spack to build camellia
 #   2. Determine has of dependencies spack used in building camellia
@@ -45,7 +45,7 @@ cmake \\
   -D CMAKE_BUILD_TYPE="${BUILD_TYPE}" \\
   -D CMAKE_INSTALL_PREFIX:PATH=${INSTALL_PREFIX} \\
   -D BUILD_FOR_INSTALL:BOOL=ON \\
-  -D CMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=FALSE \
+  -D CMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=FALSE \\
   -D CMAKE_COLOR_MAKEFILE:BOOL=ON \\
   -D CMAKE_VERBOSE_MAKEFILE:BOOL=ON \\
   -D ENABLE_PARALLEL:BOOL='TRUE' \\
