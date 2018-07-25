@@ -71,7 +71,6 @@ class Camellia(CMakePackage):
     depends_on('trilinos+amesos2+belos+epetra+epetraext+exodus+ifpack+ifpack2+intrepid+intrepid2+kokkos+ml+muelu+sacado+shards+teuchos+tpetra+zoltan+mumps+superlu-dist+hdf5+zlib+pnetcdf@master,12.12.1:')
     #depends_on('moab@:4', when='+moab')
     depends_on('moab')
-    depends_on('moab', when '+docs')
 #later version of hdf5 compile but fail at run time
 #bug related to H5Dcreate2():
 #1.8.10 fails to compile

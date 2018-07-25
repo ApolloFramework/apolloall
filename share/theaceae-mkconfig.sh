@@ -29,10 +29,10 @@ get_camellia_spack () {
 }
 
 # Normal method
-#get_camellia_spack camellia@apollo2
+get_camellia_spack camellia@apollo2
 
 # Do a specific hash
-get_camellia_spack 'qominb5'
+#get_camellia_spack 'qominb5'
 
 # Manually specify location instead
 #CAMELLIA_DIR="${SCRATCH}/internal/camellia2"

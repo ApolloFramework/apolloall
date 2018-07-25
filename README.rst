@@ -28,13 +28,12 @@ actual project.  Currently these are:
       - `Main moab site <http://sigma.mcs.anl.gov/moab-library/>`_
 
 
-Installation of theaceae, Camellia, and dependencies
-----------------------------------------------------
+Initial setup and configuration
+-------------------------------
 
 To check out the repository from the command line::
 
       git clone https://github.com/ApolloFramework/apolloall apolloall
-
 
 To get repositories we need, type from within the apolloall directory::
 
@@ -57,21 +56,15 @@ essential actions taken, `externalrepos.sh` can `Show` it's actions::
 The `-a` option only checks out the immediate repositories needed.  It is also
 possible to clone trilinos and moab as well.
 
-Once the external repositories are checked out, then configuration can occur by
-sourcing the appropriate shell files::
+We use `spack` to handle building the dependencies for the Apollo project.
+It is useful to have `spack` bootstrap itself especially for some of the python
+dependencies needed.  From the apollo directory::
 
-      source share/apollo.sh   # Bash users
-      source share/apollo.csh  # tcsh users
+      spack/bin/spack bootstrap
 
-We use `spack` to manage the build dependency process.
 To tell spack to get the package information for apollo::
 
-      cat $APOLLO_ROOT/share/repos.yaml >> ~/.spack/repos.yaml
-
-It is useful to have `spack` bootstrap itself especially for some of the python
-dependencies needed::
-
-      spack bootstrap
+      cat share/repos.yaml >> ~/.spack/repos.yaml
 
 To make sure the compilers are configured, this is a simple package to build and
 install::
@@ -87,12 +80,34 @@ This can help configure the `compilers.yaml` file for you::
 
       spack compiler find
 
+Once the external repositories are checked out, then configuration can occur by
+sourcing the appropriate shell files::
+
+      source share/apollo.sh   # Bash users
+      source share/apollo.csh  # tcsh users
+
+These initialization files: 
+
+  + define the environment variables `APOLLO_ROOT` and `SPACK_ROOT` 
+  + put the spack into the path
+  + create two aliases `spackinit` and `spackmodinit` that provide advanced spack initialization
+    (but can be slow to load so is not done as part of login configuration
+    files but rather as aliases)
+  + Adds the `module` command that spack built above to the configuration which
+    is useful for using spack-built python utilities
+
+The scripts can be sourced from your `~/.bashrc` or `~/.tcshrc` files.
+
+Installation of theaceae, Camellia, and dependencies
+----------------------------------------------------
+
 To install Theacae along with Camellia and all it's dependencies::
 
       spack install theaceae
 
 This will automatically build and install Camellia with the appropriate trilinos
-builds.  The camellia build command that it is equivalent to is::
+builds.  The spack installation command that it is equivalent to installing the
+right version of camellia is::
 
       spack install camellia@apollo2
 
@@ -110,10 +125,23 @@ Or you can navigate to the Camellia root directory and run::
 
       spack diy camellia@<version>
 
-This does not work that well so instead we have been using
-`$APOLLO_ROOT/share/make-config.sh`.  You can run this script
+This does not work that well so instead we have been using::
+
+       $APOLLO_ROOT/share/camellia-mkconfig.sh
+       $APOLLO_ROOT/share/theaceae-mkconfig.sh
+
+to create build directories for development and testing.  The scripts can be run
 from anywhere on your file system and serves as a more convenient way of
 switching to the normal edit/build development workflow cycle.
 
-Todo::
-  + Spack diy doesn't work that well debug
+The documentation for the Apollo project is all done with the 
+`Sphinx documentation: <http://www.sphinx-doc.org>`_ system.
+It uses python scripts to convert the ReStructured Text files into html.
+To get the right PYTHONPATH configured, first make sure you have run the
+`spackmodinit` alias and then::
+
+      spack load py-sphinx
+      spack load py-packaging
+
+One is now be ready to build theaceae including the documentation
+
