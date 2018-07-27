@@ -22,6 +22,7 @@ EXTERNALREPO USAGE
   -T ................ Get Trilinos (optional since default is to use spack provided)
   -s ................ Get spack
   -S ................ Get scimake
+  -I ................ Get apolloframework.github.io
   -L ................ List all of the repos including those not covered
  
 EOF
@@ -34,6 +35,7 @@ processExtreposArgs() {
   case "$1" in
     c) GET_CAMELLIA=true;;
     C) GET_CAMELLIA2=true;;
+    I) GET_IO=true;;
     s) GET_SPACK=true;;
     S) GET_SCIMAKE=true;;
     t) GET_THEACEAE=true;;
@@ -63,7 +65,7 @@ GET_SCIMAKE=false
 GET_THEACEAE=false
 GET_TRILINOS=false
 LISTALL=false
-EXTREPOS_ARGS="acChLsStT"
+EXTREPOS_ARGS="acChILsStT"
 while getopts "$EXTREPOS_ARGS" arg; do
   processExtreposArgs $arg
 done
@@ -166,13 +168,16 @@ fi
 if $GET_THEACEAE; then
   cloneGitRepo $apollo "theaceae" "theaceae"
 fi
+if $GET_IO; then
+  cloneGitRepo $apollo "apolloframework.github.io" "apolloframework.github.io" 
+fi
 
 
 
 if $LISTALL; then
   cat >&2 <<SHEOF
 
-CAMELLIA (-c option):
+CAMELLIA (-c option): (Not downloaded with -a)
  git clone https://${apollo}/Camellia camellia
 
 CAMELLIA (-C option):
@@ -182,6 +187,9 @@ CAMELLIA (-C option):
 THEACEAE (-t option):
  git clone https://${apollo}/theaceae theaceae
 
+SCIMAKE (-S option):
+ git clone https://${apollo}/scimake scimake
+
 SPACK (-s option):
  git clone https://${apollo}/spack spack
  git remote add upstream https://${github}/spack/spack
@@ -190,6 +198,8 @@ TRILINOS (-T option):  (Not downloaded with -a)
  git clone https://${apollo}/Trilinos trilinos
  git remote add upstream https://${github}/trilinos/Trilinos
 
+APOLLOFRAMEWORK.GITHUB.IO:  (Not downloaded with -a)
+ git clone https://${apollo}/apolloframework.github.io
 SHEOF
 
 fi
