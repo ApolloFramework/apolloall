@@ -67,3 +67,4 @@ class Theaceae(CMakePackage):
             '-DCMAKE_CXX_COMPILER:FILEPATH=%s' % spec['mpi'].mpicxx,
             '-DCMAKE_Fortran_COMPILER:FILEPATH=%s' % spec['mpi'].mpifc
         ]
+        return options
