@@ -62,10 +62,6 @@ dependencies needed.  From the apollo directory::
 
       spack/bin/spack bootstrap
 
-To tell spack to get the package information for apollo::
-
-      cat share/repos.yaml >> ~/.spack/repos.yaml
-
 To make sure the compilers are configured, this is a simple package to build and
 install::
 
@@ -97,6 +93,12 @@ These initialization files:
     is useful for using spack-built python utilities
 
 The scripts can be sourced from your `~/.bashrc` or `~/.tcshrc` files.
+
+Finally, to tell spack to get the package information for apollo::
+
+      cat share/repos.yaml >> ~/.spack/repos.yaml
+
+which relies on the `APOLLO_ROOT` environment variable.
 
 Installation of theaceae, Camellia, and dependencies
 ----------------------------------------------------
