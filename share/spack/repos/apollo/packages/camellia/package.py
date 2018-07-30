@@ -85,7 +85,11 @@ class Camellia(CMakePackage):
             '-DBUILD_FOR_INSTALL:BOOL=ON',
             '-DCMAKE_C_COMPILER:FILEPATH=%s' % spec['mpi'].mpicc,
             '-DCMAKE_CXX_COMPILER:FILEPATH=%s' % spec['mpi'].mpicxx,
-            '-DCMAKE_Fortran_COMPILER:FILEPATH=%s' % spec['mpi'].mpifc
+            '-DCMAKE_Fortran_COMPILER:FILEPATH=%s' % spec['mpi'].mpifc,
+            '-D BUILD_DPGTESTS_DRIVER:BOOL=OFF',
+            '-D BUILD_BRENDAN_DRIVERS:BOOL=ON',
+            '-D BUILD_PRECONDITIONING_DRIVERS:BOOL=OFF',
+            '-D BUILD_CONVECTION_DRIVERS:BOOL=ON'
         ]
 
         if '@apollo' in spec:
