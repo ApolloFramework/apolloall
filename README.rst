@@ -56,28 +56,8 @@ essential actions taken, `externalrepos.sh` can `Show` it's actions::
 The `-a` option only checks out the immediate repositories needed.  It is also
 possible to clone trilinos and moab as well.
 
-We use `spack` to handle building the dependencies for the Apollo project.
-It is useful to have `spack` bootstrap itself especially for some of the python
-dependencies needed.  From the apollo directory::
-
-      spack/bin/spack bootstrap
-
-To make sure the compilers are configured, this is a simple package to build and
-install::
-
-      spack install libelf
-
-If it doesn't work, then you may need to configure
-`$HOME/.spack/compilers.yaml`.  This shows the current compilers::
-
-      spack compilers
-
-This can help configure the `compilers.yaml` file for you::
-
-      spack compiler find
-
 Once the external repositories are checked out, then configuration can occur by
-sourcing the appropriate shell files::
+for future use.  This can be done by sourcing the appropriate shell files::
 
       source share/apollo.sh   # Bash users
       source share/apollo.csh  # tcsh users
@@ -94,11 +74,39 @@ These initialization files:
 
 The scripts can be sourced from your `~/.bashrc` or `~/.tcshrc` files.
 
+We use `spack` to handle building the dependencies for the Apollo project.
+It is useful to have `spack` bootstrap itself especially for some of the python
+dependencies needed.  From the apollo directory (tcsh users may need to type
+`rehash` to find spack within the path)::
+
+      spack bootstrap
+
+To make sure the compilers are configured, this is a simple package to build and
+install::
+
+      spack install libelf
+
+If it doesn't work, then you may need to configure
+`$HOME/.spack/compilers.yaml`.  This shows the current compilers::
+
+      spack compilers
+
+This can help configure the `compilers.yaml` file for you::
+
+      spack compiler find
+
 Finally, to tell spack to get the package information for apollo::
 
       cat share/repos.yaml >> ~/.spack/repos.yaml
 
-which relies on the `APOLLO_ROOT` environment variable.
+which relies on the `APOLLO_ROOT` environment variable.  With spack configured,
+you can also initialize spack usage::
+
+      spackinit
+      spackmodinit
+
+These aliases can take a bit of time to run which is why they are aliases and
+not executed from the `~/.bashrc` or `~/.tcshrc` files.
 
 Installation of theaceae, Camellia, and dependencies
 ----------------------------------------------------
