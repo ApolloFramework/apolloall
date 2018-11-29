@@ -142,10 +142,12 @@ addExtraUpstream() {
 #
 # This is the old version that we keep anyway
 if $GET_CAMELLIA; then
+  echo "camellia"
   cloneGitRepo $apollo "Camellia" "camellia"
 fi
 # Main upstream will be Nate's version, but add our version as well
 if $GET_CAMELLIA2; then
+  echo "camellia2"
   cloneGitRepo $apollo "camellia2" "camellia2"
   addExtraUpstream $bitbucket nateroberts/camellia camellia2 upstream ""
 fi
@@ -153,23 +155,28 @@ fi
 # We do not do much development of spack itself, so default is github
 # and apollo is added as another remote with the name of apollo
 if $GET_SPACK; then
+  echo "spack"
   cloneGitRepo $github "spack/spack" "spack"
   addExtraUpstream $apollo "spack" "spack" "apollo" ""
 fi
 if $GET_SCIMAKE; then
+  echo "scimake"
   cloneGitRepo $apollo scimake scimake
 fi
 # This is the repo for the test cases
 if $GET_TRILINOS; then
+  echo "trilinos"
   cloneGitRepo $apollo "Trilinos" "trilinos"
   addExtraUpstream $github "trilinos/Trilinos" "trilinos" "upstream" ""
 fi
 # This is the repo for the test cases
 if $GET_THEACEAE; then
+  echo "theaceae"
   cloneGitRepo $apollo "theaceae" "theaceae"
 fi
 if $GET_IO; then
-  cloneGitRepo $apollo "apolloframework.github.io" "apolloframework.github.io" 
+  echo "github.io"
+  cloneGitRepo $apollo "apolloframework.github.io" "apolloframework.github.io"
 fi
 
 
